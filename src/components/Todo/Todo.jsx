@@ -89,7 +89,7 @@ const Todo = () => {
       };
       fetch();
     }
-  }, [id]);
+  }, [id, del, update]);
 
   return (
     <>
