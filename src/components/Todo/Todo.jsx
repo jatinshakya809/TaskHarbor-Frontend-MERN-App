@@ -42,8 +42,6 @@ const Todo = () => {
           });
           setData({ title: "", body: "" });
           toast.success("Your task is Added");
-
-          window.location.reload();
         } catch (error) {
           console.log("Error in addTask", error);
           toast.error("Your task is Not saved! Please SignUp");
@@ -63,7 +61,6 @@ const Todo = () => {
           `${baseUrl}/api/v1/list/deleteTask/${cardId}`,
           { data: { id: id } }
         );
-        window.location.reload();
       } catch (error) {
         console.log("Error in Delete Task", error);
         toast.error("Your task is Not Delete! try Again");

@@ -3,6 +3,7 @@ import "./Todo.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { baseUrl } from "../../BaseUrl";
 
 const Update = ({ showUpdate, update }) => {
   let id = sessionStorage.getItem("id");
@@ -29,14 +30,13 @@ const Update = ({ showUpdate, update }) => {
       const Taskid = update._id;
 
       const res = await axios.put(
-        `http://localhost:3000/api/v1/list/updatetask/${Taskid}`,
+        `${baseUrl}/api/v1/list/updatetask/${Taskid}`,
         { title: title, body: body, id: id }
       );
 
       toast.success(res.data.message);
       setTimeout(() => {
         showUpdate("none");
-        window.location.reload();
       }, 1000);
     } catch (error) {
       console.log("update api me error", error);
