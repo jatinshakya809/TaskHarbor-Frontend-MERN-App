@@ -65,7 +65,7 @@ const Todo = () => {
         toast.error("Your task is Not Delete! try Again");
       }
     } else {
-      toast.error("Please Signup");
+      alert("Please Signup");
     }
   };
   const showUpdate = (value) => {
@@ -92,8 +92,8 @@ const Todo = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className="md:px-20 px-5 min-h-[100vh] py-10 flex flex-col  md:items-center">
-        <ToastContainer />
         <div className="md:w-[50vw] ">
           <div className="flex flex-col justify-center items-center shadowInput rounded-lg">
             <input

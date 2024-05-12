@@ -23,24 +23,28 @@ const Update = ({ showUpdate, update }) => {
   };
 
   const submit = async (e) => {
-    try {
-      if (body === "" || title === "") {
-        return toast.error("Title and Body should not be empty");
+    if (id) {
+      try {
+        if (body === "" || title === "") {
+          return toast.error("Title and Body should not be empty");
+        }
+        const Taskid = update._id;
+
+        const res = await axios.put(
+          `${baseUrl}/api/v1/list/updatetask/${Taskid}`,
+          { title: title, body: body, id: id }
+        );
+
+        toast.success(res.data.message);
+        setTimeout(() => {
+          showUpdate("none");
+        }, 1000);
+      } catch (error) {
+        console.log("update api me error", error);
+        toast.error(error.response.data.message);
       }
-      const Taskid = update._id;
-
-      const res = await axios.put(
-        `${baseUrl}/api/v1/list/updatetask/${Taskid}`,
-        { title: title, body: body, id: id }
-      );
-
-      toast.success(res.data.message);
-      setTimeout(() => {
-        showUpdate("none");
-      }, 1000);
-    } catch (error) {
-      console.log("update api me error", error);
-      toast.error(error.response.data.message);
+    } else {
+      toast.error("Please signUp");
     }
   };
   return (
